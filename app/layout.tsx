@@ -3,14 +3,21 @@ import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import type React from "react" // Added import for React
+import { Toaster } from "@/components/ui/sonner"
+import type { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
+
+export const metadata = {
+  title: "Satya Pujith - Portfolio",
+  description: "Computer Science Student specializing in Data Science",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -19,6 +26,7 @@ export default function RootLayout({
           <Navigation />
           <main className="min-h-screen pt-16">{children}</main>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
