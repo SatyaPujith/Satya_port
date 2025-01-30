@@ -1,17 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, Phone } from "lucide-react"
-import { toast } from "sonner"
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
   const contactInfo = [
     {
       icon: Mail,
@@ -38,37 +34,6 @@ export default function ContactPage() {
       link: "https://linkedin.com/in/botukusatyapujith",
     },
   ]
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    const formData = new FormData(e.currentTarget)
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    }
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (!response.ok) throw new Error()
-
-      toast.success("Message sent successfully!")
-      e.currentTarget.reset()
-    } catch (error) {
-      toast.error("Failed to send message. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   return (
     <div className="container px-4 py-16 md:px-6">
@@ -111,7 +76,6 @@ export default function ContactPage() {
             })}
           </div>
         </div>
-
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -123,19 +87,17 @@ export default function ContactPage() {
               <CardDescription>I'll try to get back to you as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form className="space-y-4">
                 <div className="space-y-2">
-                  <Input name="name" placeholder="Your name" required />
+                  <Input placeholder="Your name" />
                 </div>
                 <div className="space-y-2">
-                  <Input name="email" type="email" placeholder="Your email" required />
+                  <Input type="email" placeholder="Your email" />
                 </div>
                 <div className="space-y-2">
-                  <Textarea name="message" placeholder="Your message" className="min-h-[150px]" required />
+                  <Textarea placeholder="Your message" className="min-h-[150px]" />
                 </div>
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
+                <Button className="w-full">Send Message</Button>
               </form>
             </CardContent>
           </Card>

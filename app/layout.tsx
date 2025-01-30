@@ -1,32 +1,27 @@
-import { ThemeProvider } from "@/components/theme-provider"
-import { Navigation } from "@/components/Navigation"
-import { Footer } from "@/components/Footer"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Toaster } from "@/components/ui/sonner"
-import type { ReactNode } from "react"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Navigation } from "@/components/navigation"
+import type React from "react" // Added import for React
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Satya Pujith - Portfolio",
-  description: "Computer Science Student specializing in Data Science",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  description: "Personal portfolio of Botuku Satya Pujith - Computer Science Student and Developer",
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Navigation />
-          <main className="min-h-screen pt-16">{children}</main>
-          <Footer />
-          <Toaster />
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

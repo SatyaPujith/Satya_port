@@ -1,27 +1,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function AboutPage() {
-  const education = [
+  const skills = [
     {
-      degree: "Bachelor of Technology - Computer Science Engineering in Data Science",
-      institution: "Institute of Aeronautical Engineering, Dundigal",
-      year: "2023-Present",
-      grade: "CGPA - 8.15",
+      category: "Programming Languages",
+      items: ["JAVA", "PYTHON"],
     },
     {
-      degree: "Intermediate - Maths, Physics, Chemistry",
-      institution: "Narayana Junior College, Vijayawada",
-      year: "2021-2023",
-      grade: "92.7%",
+      category: "Web Technologies",
+      items: ["HTML", "CSS", "React.js", "Node.js"],
     },
     {
-      degree: "SSC",
-      institution: "Narayana High School",
-      year: "2020-2021",
-      grade: "CGPA – 10.0",
+      category: "Development Tools",
+      items: ["Flutter", "Android Studio", "Visual Studio"],
+    },
+    {
+      category: "Data & Analytics",
+      items: ["MySQL", "Power BI", "Google Analytics"],
     },
   ]
 
@@ -41,36 +39,32 @@ export default function AboutPage() {
             to apply my technical skills and problem-solving abilities to real-world challenges.
           </p>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="space-y-4"
-        >
-          <h2 className="text-2xl font-bold">Education</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {education.map((edu, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">{edu.degree}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{edu.institution}</p>
-                    <p className="text-sm">{edu.year}</p>
-                    <p className="font-medium">{edu.grade}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {skills.map((skillGroup, index) => (
+            <motion.div
+              key={skillGroup.category}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold mb-4">{skillGroup.category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillGroup.items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-sm font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </div>
   )

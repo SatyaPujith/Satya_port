@@ -1,37 +1,37 @@
 "use client"
 
-import Image from "next/image"
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function Home() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] flex items-center py-8 md:py-0">
+    <section className="min-h-[calc(100vh-4rem)] flex items-center">
       <div className="container px-4 md:px-6">
-        <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center space-y-4 order-2 lg:order-1 text-center lg:text-left"
+            className="flex flex-col justify-center space-y-4"
           >
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                 Hi, I&apos;m Satya Pujith
               </h1>
-              <p className="text-base sm:text-lg text-muted-foreground md:text-xl">
+              <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
                 Computer Science Student specializing in Data Science. Passionate about building innovative solutions
                 and learning new technologies.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start">
-              <Button asChild size="lg">
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Button asChild>
                 <a href="/projects">
-                  View My Work <ArrowRight className="ml-2 h-5 w-5" />
+                  View My Work <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-              <Button variant="outline" asChild size="lg">
+              <Button variant="outline" asChild>
                 <a href="/contact">Get in Touch</a>
               </Button>
             </div>
@@ -40,14 +40,14 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center order-1 lg:order-2"
+            className="flex items-center justify-center"
           >
-            <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px]">
+            <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-full">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_6111569369801802390_y.jpg-0Xm5Aog6wZvZLt9BLO9FK4R1LUwPpf.jpeg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_6111569369801802390_y.jpg-ECkwVZyxeFToYK11bQKzMnzJAfVZ9J.jpeg"
                 alt="Botuku Satya Pujith"
                 fill
-                className="object-cover rounded-full border-4 border-background shadow-xl"
+                className="object-cover"
                 priority
               />
             </div>
